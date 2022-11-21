@@ -3,7 +3,7 @@ import axios from "axios";
 import { store } from "./data/store";
 
 import AppHeader from "./components/AppHeader.vue";
-import AppCard from "./components/AppCard.vue";
+import MovieList from "./components/MovieList.vue";
 import AppFooter from "./components/AppFooter.vue";
 
 export default {
@@ -15,7 +15,7 @@ export default {
   },
   components: {
     AppHeader,
-    AppCard,
+    MovieList,
     AppFooter,
   },
   methods: {
@@ -23,8 +23,8 @@ export default {
       axios
         .get(store.apiUrl)
         .then((result) => {
-          store.movieList = result.data;
-          console.log(store.movieList);
+          store.movieListData = result.data;
+          console.log(store.movieListData);
         })
         .catch((error) => {
           console.log(error);
@@ -40,7 +40,7 @@ export default {
 <template>
   <AppHeader title="boolflix" />
   <main>
-    <AppCard />
+    <MovieList />
     <AppFooter />
   </main>
 </template>
