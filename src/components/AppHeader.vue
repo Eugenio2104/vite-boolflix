@@ -1,13 +1,16 @@
 <script>
 export default {
   name: "AppHeader",
+  props: {
+    title: String,
+  },
 };
 </script>
 
 <template>
   <header>
-    <div class="container">
-      <h1>Boolflix</h1>
+    <div class="container py-2">
+      <h1>{{ title }}</h1>
     </div>
   </header>
 </template>
@@ -17,6 +20,7 @@ export default {
 .container {
   h1 {
     text-transform: uppercase;
+    font-weight: 700;
   }
 }
 </style>
