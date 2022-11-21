@@ -12,17 +12,16 @@ export default {
 </script>
 
 <template>
-  <ul>
-    <li v-for="movie in movieListData" :key="movie.id">
-      {{ movie.title }}
-    </li>
-  </ul>
+  <div class="container">
+    <ul>
+      <li v-for="movie in store.movieListData" :key="movie.id">
+        {{ movie.original_title }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 
 
 <style lang="scss" scoped>
-li {
-  color: white;
-}
 </style>

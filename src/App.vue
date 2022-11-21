@@ -23,7 +23,7 @@ export default {
       axios
         .get(store.apiUrl)
         .then((result) => {
-          store.movieListData = result.data;
+          store.movieListData = result.data.results;
           console.log(store.movieListData);
         })
         .catch((error) => {
