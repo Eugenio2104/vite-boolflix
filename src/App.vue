@@ -4,7 +4,7 @@ import { store } from "./data/store";
 
 import AppHeader from "./components/AppHeader.vue";
 import MovieList from "./components/MovieList.vue";
-import AppFooter from "./components/AppFooter.vue";
+import AppMain from "./components/AppMain.vue";
 
 export default {
   name: "App",
@@ -16,32 +16,29 @@ export default {
   components: {
     AppHeader,
     MovieList,
-    AppFooter,
+    AppMain,
   },
   methods: {
     getMovie() {
+      console.log("getting movies");
       axios
-        .get(store.apiUrl)
+        .get(store.apiUrl, { params: { query: store.searchInput } })
         .then((result) => {
           store.movieListData = result.data.results;
-          console.log(store.movieListData);
         })
         .catch((error) => {
           console.log(error);
         });
     },
   },
-  mounted() {
-    this.getMovie();
-  },
+  mounted() {},
 };
 </script>
 
 <template>
-  <AppHeader title="boolflix" />
+  <AppHeader @searchInput="getMovie" />
   <main>
-    <MovieList />
-    <AppFooter />
+    <AppMain />
   </main>
 </template>
 

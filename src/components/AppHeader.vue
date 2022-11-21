@@ -1,8 +1,12 @@
 <script>
+import { store } from "../data/store";
+
 export default {
   name: "AppHeader",
-  props: {
-    title: String,
+  data() {
+    return {
+      store,
+    };
   },
 };
 </script>
@@ -12,10 +16,12 @@ export default {
     <div class="container py-2">
       <div class="row">
         <div class="logo col-3">
-          <h1>{{ title }}</h1>
+          <img src="/logo-boolflix.png" alt="" />
         </div>
         <div class="input mb-3 col-3 offset-6 d-flex">
           <input
+            @keyup.enter="$emit('searchInput')"
+            v-model="store.searchInput"
             type="text"
             class="form-control"
             placeholder="Inserisci un Film"
@@ -23,6 +29,7 @@ export default {
             aria-describedby="button-addon2"
           />
           <button
+            @click="$emit('searchInput')"
             class="btn btn-outline-secondary"
             type="button"
             id="button-addon2"
@@ -38,15 +45,19 @@ export default {
 
 <style lang="scss" scoped>
 @use "../styles/partials/vars" as *;
-
-.container {
-  h1 {
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-  input {
-    background-color: $primary-color;
-    color: white;
+header {
+  .container {
+    img {
+      max-width: 100%;
+    }
+    h1 {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    input {
+      background-color: $primary-color;
+      color: white;
+    }
   }
 }
 </style>
