@@ -21,8 +21,10 @@ export default {
       </div>
       <div class="flip-card-back">
         <!-- titolo, titolo originale, lingua, voto -->
-        <h6>{{ movie.title }}</h6>
-        <p>{{ movie.original_title }}</p>
+        <h6>{{ movie.title || movie.name }}</h6>
+        <p v-if="movie.original_title != movie.title">
+          Titolo Originale : {{ movie.original_title }}
+        </p>
         <p>{{ movie.vote_averange }}</p>
         <p>{{ movie.original_language }}</p>
         <p>{{ movie.overview }}</p>

@@ -22,7 +22,9 @@ export default {
     getMovie() {
       console.log("getting movies");
       axios
-        .get(store.apiUrl, { params: { query: store.searchInput } })
+        .get(store.apiUrl, {
+          params: { query: store.searchInput, language: "it-IT" },
+        })
         .then((result) => {
           store.movieListData = result.data.results;
         })
