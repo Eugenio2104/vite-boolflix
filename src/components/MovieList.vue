@@ -10,81 +10,67 @@ export default {
 </script>
 
 <template>
-  <div class="card">
-    <img
-      :src="'http://image.tmdb.org/t/p/w342/' + movie.poster_path"
-      :alt="movie.title"
-    />
-    <h1>{{ movie.title }}</h1>
-    <p>
-      Lorem Ipsum is simply dummy text from the printing and typeseting industry
-    </p>
+  <div class="flip-card col-4 m-2">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img
+          :src="'http://image.tmdb.org/t/p/w342/' + movie.poster_path"
+          :alt="movie.title"
+          style="width: 300px; height: 300px"
+        />
+      </div>
+      <div class="flip-card-back">
+        <!-- titolo, titolo originale, lingua, voto -->
+        <h6>{{ movie.title }}</h6>
+        <p>{{ movie.original_title }}</p>
+        <p>{{ movie.vote_averange }}</p>
+        <p>{{ movie.original_language }}</p>
+        <p>{{ movie.overview }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 
 
 <style lang="scss" scoped>
-.card {
-  display: flex;
-  width: calc(100% / 6);
-  margin: 20px;
-  height: 360px;
-  border-radius: 15px;
-  padding: 1.5rem;
-  background: white;
+@use "../styles/partials/vars" as *;
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+.flip-card-inner {
   position: relative;
-  transition: 0.4s ease-out;
-  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
-}
-.card:hover {
-  transform: translateY(20px);
-}
-.card:hover:before {
-  opacity: 1;
-}
-.card:hover .info {
-  opacity: 1;
-  transform: translateY(0px);
-}
-.card:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 2;
-  transition: 0.5s;
-  opacity: 0;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.card img {
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 15px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
-.card .info {
-  position: relative;
-  z-index: 3;
-  color: white;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.5s;
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
 }
-.card .info h1 {
-  margin: 0px;
-}
-.card .info p {
-  letter-spacing: 1px;
-  font-size: 15px;
-  margin-top: 8px;
+.flip-card-back {
+  background-color: $primary-color;
+  color: $secondary-color;
+  transform: rotateY(180deg);
+  p {
+    font-size: 0.8rem;
+  }
 }
 </style>
