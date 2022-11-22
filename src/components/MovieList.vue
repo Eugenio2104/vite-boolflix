@@ -25,7 +25,7 @@ export default {
         <p v-if="movie.original_title != movie.title">
           Titolo Originale : {{ movie.original_title }}
         </p>
-        <p>{{ movie.vote_averange }}</p>
+        <p>{{ movie.vote_average }}</p>
         <p>{{ movie.original_language }}</p>
         <p>{{ movie.overview }}</p>
       </div>

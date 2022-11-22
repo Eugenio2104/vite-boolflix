@@ -26,7 +26,20 @@ export default {
           params: { query: store.searchInput, language: "it-IT" },
         })
         .then((result) => {
-          store.movieListData = result.data.results;
+          // store.movieListData = result.data.results;
+
+          // filtriamo tutti i risultati per media_type per prendere tutti i film
+          store.movieListData = result.data.results.filter(
+            (item) => item.media_type == "movie"
+          );
+
+          // filtriamo tutti i risultati per media_type per prendere tutte le serie tv
+          store.serieTvListData = result.data.results.filter(
+            (item) => item.media_type == "tv"
+          );
+
+          console.log(store.movieListDat);
+          console.warn(store.serieTvListData);
         })
         .catch((error) => {
           console.log(error);
