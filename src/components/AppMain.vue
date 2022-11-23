@@ -19,14 +19,14 @@ export default {
   <div class="container">
     <div class="row" v-if="store.movieListData.length">
       <!-- Qui ciclare stampa dei film -->
-      <h1>FILM</h1>
+      <h1>film</h1>
       <MovieList
         v-for="(movie, id) in store.movieListData"
         :key="id"
         :movie="movie"
       />
 
-      <h1>SERIE TV</h1>
+      <h1>serie tv</h1>
       <!-- Qui ciclare stampa delle serie tv -->
       <MovieList
         v-for="(serie, id) in store.serieTvListData"
@@ -43,6 +43,7 @@ main {
   min-height: 100vh;
   h1 {
     margin: 20px;
+    text-transform: uppercase;
   }
 }
 </style>

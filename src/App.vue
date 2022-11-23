@@ -38,8 +38,8 @@ export default {
             (item) => item.media_type == "tv"
           );
 
-          console.log(store.movieListDat);
-          console.warn(store.serieTvListData);
+          // console.log(store.movieListDat);
+          // console.warn(store.serieTvListData);
         })
         .catch((error) => {
           console.log(error);

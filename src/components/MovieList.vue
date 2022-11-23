@@ -3,8 +3,21 @@ import { store } from "../data/store";
 
 export default {
   name: "MovieList",
+  data() {
+    return {
+      flags: ["en", "it"],
+    };
+  },
+
   props: {
     movie: Object,
+  },
+  methods: {
+    mapFlagsCode(code) {
+      if (code === "en") return "gb";
+
+      return code;
+    },
   },
 };
 </script>
@@ -26,7 +39,13 @@ export default {
           Titolo Originale : {{ movie.original_title }}
         </p>
         <p>{{ movie.vote_average }}</p>
-        <p>{{ movie.original_language }}</p>
+        <p
+          v-if="flags.includes(mapFlagsCode(MovieList.original_language))"
+          :class="'fi fi-' + MovieList.original_language"
+        ></p>
+        <p v-if="MovieList.original_language === 'en'" :class="'fi fi-gb'"></p>
+        <p v-else>{{ MovieList.original_language }}</p>
+        {{ movie.original_language }}
         <p>{{ movie.overview }}</p>
       </div>
     </div>
